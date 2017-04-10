@@ -105,7 +105,7 @@ def main():
 	for [event, dist] in events:
 		eid = event.id
 		ticket = event.cheapest_ticket_price()
-		print("Event {:03} - ${:0.2f}, Distance {:d}".format(eid, ticket, dist)) ##%(eid)s - $%(ticket)s, Distance %(dist)s" % locals())
+		print("Event {:03} - ${:0.2f}, Distance {:d}".format(eid, ticket, dist))
 
 	print()
 
