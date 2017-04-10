@@ -110,7 +110,7 @@ def main():
 	print()
 
 def generate_tickets():
-	return [round(random.uniform(0.01, 1000), 2) for x in range(random.randint(1, 10))]
+	return [round(random.uniform(0.01, 1000.00), 2) for x in range(random.randint(1, 100))]
 
 def read_input():
 	valid = False
