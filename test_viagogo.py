@@ -39,6 +39,13 @@ class TestEvent(unittest.TestCase):
 	def setUp(self):
 		self.event = viagogo.Event([1.00, 2.05, 100.00])
 
+	def test_incrementing_id(self):
+		self.assertTrue(self.event.id, 1)
+		self.event2 = viagogo.Event([3.58, 8.99])
+		self.assertTrue(self.event2.id, 2)
+		self.event3 = viagogo.Event([40.99, 50.99, 68.99])
+		self.assertTrue(self.event3.id, 3)
+
 	def test_cheapest_ticket(self):
 		self.assertEqual(self.event.cheapest_ticket_price(), 1.00)
 
@@ -62,10 +69,11 @@ class TestMain(unittest.TestCase):
 		self.assertFalse(viagogo.valid_input_format("\n"))
 
 		# missing coordinates
+		self.assertFalse(viagogo.valid_input_format("4"))
 		self.assertFalse(viagogo.valid_input_format("4, "))
 		self.assertFalse(viagogo.valid_input_format(", 2"))
 
-		# no comma
+		# missing comma
 		self.assertFalse(viagogo.valid_input_format("4 2"))
 
 		# wrong number format (only accept integers)
