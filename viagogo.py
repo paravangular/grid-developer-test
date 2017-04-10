@@ -107,30 +107,46 @@ def main():
 		ticket = event.cheapest_ticket_price()
 		print("Event {:03} - ${:0.2f}, Distance {:d}".format(eid, ticket, dist)) ##%(eid)s - $%(ticket)s, Distance %(dist)s" % locals())
 
+	print()
 
 def generate_tickets():
 	return [round(random.uniform(0.01, 1000), 2) for x in range(random.randint(1, 10))]
 
 def read_input():
-	while True:
+	valid = False
+	while not valid:
 		s = input("Please enter a coordinate: ")
 
-		if not re.match("^\s*?(\-?\d+)\s*,\s*(\-?\d+)\s*?$", s):
-			print("Sorry, I didn't understand that. Please input a valid coordinate.")
-		else:
-			coordinates = tuple(map(int, s.strip().split(',')))
+		valid = valid_input_format(s)
 
-			x_lim = (WORLD_X_MIN, WORLD_X_MIN + WORLD_X_SIZE - 1)
-			y_lim = (WORLD_Y_MIN, WORLD_Y_MIN + WORLD_Y_SIZE - 1)
-
-			if coordinates[0] < x_lim[0] or coordinates[0] > x_lim[1]:
-				print("Your x coordinates must be between " + str(x_lim) + "!")
-			elif coordinates[1] < y_lim[0] or coordinates[1] > y_lim[1]:
-				print("Your y coordinates must be between " + str(y_lim) + "!")
-			else:
-				break
+		if valid:
+			coordinates = parse_input(s)
+			valid = valid_input_range(coordinates)
 
 	return coordinates
+
+def valid_input_format(s):
+	if not re.match("^\s*?(\-?\d+)\s*,\s*(\-?\d+)\s*?$", s):
+		print("Sorry, I didn't understand that. Please input a valid coordinate.")
+		return False
+	else:
+		return True
+
+def valid_input_range(coordinates):
+	x_lim = (WORLD_X_MIN, WORLD_X_MIN + WORLD_X_SIZE - 1)
+	y_lim = (WORLD_Y_MIN, WORLD_Y_MIN + WORLD_Y_SIZE - 1)
+
+	if coordinates[0] < x_lim[0] or coordinates[0] > x_lim[1]:
+		print("Your x coordinates must be between " + str(x_lim) + "!")
+	elif coordinates[1] < y_lim[0] or coordinates[1] > y_lim[1]:
+		print("Your y coordinates must be between " + str(y_lim) + "!")
+	else:
+		return True
+
+	return False
+
+def parse_input(s):
+	return tuple(map(int, s.strip().split(',')))
 
 def offset(coordinates):
 	x = coordinates[0] - WORLD_X_MIN
