@@ -137,9 +137,9 @@ def valid_input_range(coordinates):
 	y_lim = (WORLD_Y_MIN, WORLD_Y_MIN + WORLD_Y_SIZE - 1)
 
 	if coordinates[0] < x_lim[0] or coordinates[0] > x_lim[1]:
-		print("Your x coordinates must be between " + str(x_lim) + "!")
+		print("Your x coordinates must be between {}!".format(x_lim))
 	elif coordinates[1] < y_lim[0] or coordinates[1] > y_lim[1]:
-		print("Your y coordinates must be between " + str(y_lim) + "!")
+		print("Your y coordinates must be between {}!".format(y_lim))
 	else:
 		return True
 
