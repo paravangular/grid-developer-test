@@ -140,4 +140,4 @@ class TestMain(unittest.TestCase):
 		self.assertTrue(viagogo.closest_events(self.w, (0, 0), 7), [[1, 0], [2, 1], [2, 2], [5, 3], [4, 5]])
 
 if __name__ == '__main__':
-	unittest.main()
+	unittest.main(verbosity = 2, buffer = True)
