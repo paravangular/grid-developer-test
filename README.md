@@ -15,10 +15,9 @@ python3 test_viagogo.py
 
 # 2. Assumptions
 
-- At least 1 ticket for every event is available.
 - Each event can have a maximum of 99 tickets. 99 is just an arbitrary integer >1.
 - Ticket prices range from $0.01 up to $1000.00.
-- At least 1 event must exist in the world.
+- At least 1 event must exist in the world and up to 21 * 21 events can exist (i.e. all locations have an event).
 - Each event has a unique, non-repeatable ID.
 
 

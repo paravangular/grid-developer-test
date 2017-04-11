@@ -70,7 +70,10 @@ class Event:
 		return self.__id
 
 	def cheapest_ticket_price(self):
-		return min(self.tickets)
+		if self.tickets:
+			return min(self.tickets)
+		else:
+			return False
 
 	def __repr__(self):
 		return str(self.__id)
@@ -105,12 +108,16 @@ def main():
 	for [event, dist] in events:
 		eid = event.id
 		ticket = event.cheapest_ticket_price()
-		print("Event {:03} - ${:0.2f}, Distance {:d}".format(eid, ticket, dist))
+
+		if not ticket:
+			print("Event {:03} - no tickets, Distance {:d}".format(eid, dist))
+		else:
+			print("Event {:03} - ${:0.2f}, Distance {:d}".format(eid, ticket, dist))
 
 	print()
 
 def generate_tickets():
-	return [round(random.uniform(0.01, 1000.00), 2) for x in range(random.randint(1, 100))]
+	return [round(random.uniform(0.01, 1000.00), 2) for x in range(random.randint(0, 100))]
 
 def read_input():
 	valid = False

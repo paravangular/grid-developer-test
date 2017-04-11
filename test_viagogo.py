@@ -48,6 +48,8 @@ class TestEvent(unittest.TestCase):
 
 	def test_cheapest_ticket(self):
 		self.assertEqual(self.event.cheapest_ticket_price(), 1.00)
+		self.event2 = viagogo.Event([])
+		self.assertFalse(self.event2.cheapest_ticket_price())
 
 
 class TestMain(unittest.TestCase):
